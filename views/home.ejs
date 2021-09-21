@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YelpCamp</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+    * , *::before , *::after {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html {
+        font-family: 'Roboto', sans-serif;
+        color: white;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(rgba(0,0,0,1) 10%, rgba(0,0,0,0.48503151260504207) 90%, rgba(0,0,0,0.23012955182072825) 100%) ,center / cover no-repeat  url("/resources/image2.jpg");
+    }
+
+    .navbar {
+        height: 7%;
+        background: transparent;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: rgb(206, 206, 206);
+    }
+
+    a:active {
+        color: rgb(119, 119, 119);
+    }
+
+    .navbar .title {
+        font-size: 2rem;
+    }
+
+    .navbar .navlinks .navitem {
+        margin-right: 5px;
+    }
+
+    .main {
+        width: 100%;
+        height: calc(100% - 7%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        height: 70%;
+        width: 80%;
+        background: transparent;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        justify-content: flex-start;
+    }
+
+    .container .heading {
+        font-size: 2rem;
+        margin: 10px;
+    }
+
+    .container .body {
+        text-align: center;
+        justify-self: flex-start;
+        text-shadow: black;
+        margin: 10px;
+    }
+
+    .container .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container .buttons button {
+        margin: 10px;
+    }
+
+    .container .buttons .back {
+        display: none;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        border: none;
+        background-color: rgba(255, 248, 220, 0.158);
+        color: white;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        background-color: rgba(255, 248, 220, 0.308);
+    }
+
+    .btn:active {
+        background-color: rgba(255, 248, 220, 0.74);
+        color: black;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="title">
+            <a href="/">YelpCamp</a>
+        </div>
+        <div class="navlinks">
+            <% if (!user){ %>
+                <a href="/register" class="navitem">Register</a>
+                <a href="/login" class="navitem">Login</a>
+            <% } else { %> 
+                <a href="/logout" class="navitem">Logout</a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="heading">
+                YelpCamp
+            </div>
+            <div class="body">
+                Take a dive into the world of camping and discover campgrounds all around the world.
+            </div>
+            <div class="buttons">
+                <button class="btn campgrounds">See the Campgrounds</button>
+                <button class="btn youtube">Watch a youtube tutorial</button>
+                <button class="btn back">Go Back</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const campgrounds = document.querySelector(".campgrounds");
+    const youtube = document.querySelector(".youtube");
+    const contentBody = document.querySelector(".body");
+    const backButton = document.querySelector(".back");
+
+    campgrounds.addEventListener("click" , (evt) => {
+        window.location.href = "/campgrounds";
+    })
+
+    youtube.addEventListener("click" , (evt) => {
+        contentBody.innerHTML = "";
+        youtube.style.display = "none";
+        contentBody.innerHTML = '<div><iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="302.6" height="170" type="text/html" src="https://www.youtube.com/embed/9bZkp7q19f0?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/pl/">youtubeembedcode pl</a></small></div><div><small><a href="https://onlinecasinoutansvensklicens.se/">onlinecasinoutansvensklicens.se</a></small></div></iframe></div>';
+        backButton.style.display = "block";
+    })
+
+    backButton.addEventListener("click" , (evt) => {
+        contentBody.innerHTML = "Take a dive into the world of camping and discover campgrounds all around the world.";
+        youtube.style.display = "block";
+        backButton.style.display = "none";
+    })
+</script>
+
+</html>
+
